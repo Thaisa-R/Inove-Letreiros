@@ -1,0 +1,336 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Inov Design System - Ousado, Inspirado em Neon, Moderno */
+
+@layer base {
+  :root {
+    --background: 222 47% 6%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 8%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 8%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 222 47% 12%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 222 47% 15%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 15 100% 60%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 222 47% 18%;
+    --input: 222 47% 15%;
+    --ring: 187 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Tokens personalizados da Inov */
+    --neon-glow: 187 100% 50%;
+    --neon-secondary: 280 100% 65%;
+    --coral: 15 100% 60%;
+    --gradient-neon: linear-gradient(135deg, hsl(187 100% 50%), hsl(280 100% 65%));
+    --gradient-coral: linear-gradient(135deg, hsl(15 100% 60%), hsl(35 100% 55%));
+    --shadow-neon: 0 0 30px hsl(187 100% 50% / 0.4);
+    --shadow-neon-intense: 0 0 60px hsl(187 100% 50% / 0.6), 0 0 120px hsl(187 100% 50% / 0.3);
+
+    --sidebar-background: 222 47% 8%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 222 47% 15%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 222 47% 18%;
+    --sidebar-ring: 187 100% 50%;
+  }
+
+  /* Tema claro - mesmas cores de destaque, fundo branco */
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 187 100% 50%;
+    --primary-foreground: 222 47% 6%;
+
+    --secondary: 220 20% 93%;
+    --secondary-foreground: 222 47% 15%;
+
+    --muted: 220 15% 90%;
+    --muted-foreground: 222 15% 45%;
+
+    --accent: 15 100% 60%;
+    --accent-foreground: 222 47% 6%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 87%;
+    --input: 220 15% 90%;
+    --ring: 187 100% 50%;
+
+    --neon-glow: 187 100% 50%;
+    --neon-secondary: 280 100% 65%;
+    --coral: 15 100% 60%;
+    --gradient-neon: linear-gradient(135deg, hsl(187 100% 50%), hsl(280 100% 65%));
+    --gradient-coral: linear-gradient(135deg, hsl(15 100% 60%), hsl(35 100% 55%));
+    --shadow-neon: 0 4px 20px hsl(187 100% 50% / 0.15);
+    --shadow-neon-intense: 0 8px 40px hsl(187 100% 50% / 0.2), 0 4px 20px hsl(280 100% 65% / 0.1);
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 187 100% 50%;
+    --sidebar-primary-foreground: 222 47% 6%;
+    --sidebar-accent: 220 20% 93%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 220 15% 87%;
+    --sidebar-ring: 187 100% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Space Grotesk', sans-serif;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-neon);
+  }
+
+  .text-gradient-coral {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-coral);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5), 0 0 40px hsl(var(--primary) / 0.3);
+  }
+
+  .glow-box {
+    box-shadow: var(--shadow-neon);
+  }
+
+  .glow-box-intense {
+    box-shadow: var(--shadow-neon-intense);
+  }
+
+  .btn-neon {
+    @apply relative overflow-hidden transition-all duration-300;
+    background: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--neon-secondary)));
+  }
+
+  .btn-neon::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, hsl(var(--neon-secondary)), hsl(var(--primary)));
+  }
+
+  .btn-neon:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-neon:hover {
+    box-shadow: var(--shadow-neon-intense);
+    transform: translateY(-2px);
+  }
+
+  .card-glass {
+    @apply backdrop-blur-xl border;
+    background: hsl(var(--card) / 0.6);
+  }
+
+  .card-glass:hover {
+    @apply border-primary/50;
+    box-shadow: var(--shadow-neon);
+  }
+
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating-delayed {
+    animation: float 6s ease-in-out infinite 2s;
+  }
+
+  .pulse-glow {
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .animate-in {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-in-delayed {
+    animation: fadeInUp 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+  }
+
+  .animate-in-delayed-2 {
+    animation: fadeInUp 0.6s ease-out 0.4s forwards;
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px hsl(var(--primary) / 0.7), 0 0 80px hsl(var(--primary) / 0.4);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 15s linear infinite;
+}
+
+@media (max-width: 1024px) {
+  .animate-scroll {
+    animation: scroll 15s linear infinite;
+  }
+}
+
+/* Efeito de luzes de cinema */
+@keyframes cinemaLight {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 0.6; transform: scale(1.2); }
+}
+
+@keyframes cinemaLightDelay1 {
+  0%, 100% { opacity: 0.15; transform: scale(0.9); }
+  50% { opacity: 0.7; transform: scale(1.1); }
+}
+
+@keyframes cinemaLightDelay2 {
+  0%, 100% { opacity: 0.05; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.3); }
+}
+
+.cinema-light {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(40px);
+  pointer-events: none;
+}
+
+.cinema-light-1 {
+  animation: cinemaLight 3s ease-in-out infinite;
+}
+
+.cinema-light-2 {
+  animation: cinemaLightDelay1 3.5s ease-in-out infinite 0.5s;
+}
+
+.cinema-light-3 {
+  animation: cinemaLight 2.8s ease-in-out infinite 1s;
+}
+
+.cinema-light-4 {
+  animation: cinemaLightDelay2 3.2s ease-in-out infinite 1.5s;
+}
+
+.cinema-light-5 {
+  animation: cinemaLightDelay1 4s ease-in-out infinite 0.8s;
+}
+
+.cinema-light-6 {
+  animation: cinemaLight 3.3s ease-in-out infinite 2s;
+}

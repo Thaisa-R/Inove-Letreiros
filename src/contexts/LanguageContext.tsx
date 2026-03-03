@@ -14,6 +14,7 @@ const translations: Record<string, Record<Language, string>> = {
   "nav.about": { pt: "Sobre", en: "About" },
   "nav.services": { pt: "Serviços", en: "Services" },
   "nav.portfolio": { pt: "Portfólio", en: "Portfolio" },
+  "nav.partners": { pt: "Parceiros", en: "Partners" },
   "nav.contact": { pt: "Contato", en: "Contact" },
 
   // Hero

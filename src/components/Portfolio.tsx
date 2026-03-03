@@ -1,231 +1,140 @@
-import { useEffect, useRef, useState } from "react";
-import { X, ZoomIn } from "lucide-react";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useState, useRef } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
-import amarelinho1 from "@/assets/portfolio/amarelinho-1.png";
-import amarelinho2 from "@/assets/portfolio/amarelinho-2.png";
+import amarelinho1 from "@/assets/portfolio/amarelinho1.png";
 import dilaModas from "@/assets/portfolio/dila-modas.png";
+import petrobras from "@/assets/portfolio/recap70AnosPetrob.png";
 import espacoAconchego from "@/assets/portfolio/espaco-aconchego.png";
 import gugas from "@/assets/portfolio/gugas.png";
 import mariaTocaia from "@/assets/portfolio/maria-tocaia.png";
 import microlins from "@/assets/portfolio/microlins.png";
 import padariaCamila from "@/assets/portfolio/padaria-camila.png";
-
-interface Project {
-  id: number;
-  title: string;
-  category: string;
-  description: string;
-  image: string;
-}
+import mellos from "@/assets/portfolio/mellos.png";
+import multicargo from "@/assets/portfolio/multiCargo.jpeg";
+import pontomix from "@/assets/portfolio/pontoMix.png";
+import peevida from "@/assets/portfolio/pe&Vida.jpeg";
+import saladaeetc from "@/assets/portfolio/saladaeEtc.png";
 
 const Portfolio = () => {
-  const [isVisible, setIsVisible] = useState(false);
-  const [activeFilter, setActiveFilter] = useState("todos");
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const sectionRef = useRef<HTMLElement>(null);
-  const { t, lang } = useLanguage();
+  const [selectedProject, setSelectedProject] = useState<null | { name: string; img: string; desc: string }>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.1 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => observer.disconnect();
-  }, []);
+const projects = [
+  { name: "Amarelinho de Manguriba", img: amarelinho1, desc: "Letreiro 3D com letras caixa em PVC expandido e laterais adesivadas." },
+  { name: "Dila Modas", img: dilaModas, desc: "Fachada em ACM dourado com letras caixa alta também em ACM." },
+  { name: "Petrobras", img: petrobras, desc: "Letreiro 3D 360°, visível de todos os ângulos e fixado ao solo." },
+  { name: "Espaço Aconchego", img: espacoAconchego, desc: "Fachada em ACM preto com letras em ACM branco de alto contraste." },
+  { name: "Gugas | Casa do Confeiteiro", img: gugas, desc: "Fachada com base em ACM e letras 3D em caixa alta." },
+  { name: "Maria Tocaia", img: mariaTocaia, desc: "Fachada em ACM com letra caixa 3D e iluminação frontal por refletores." },
+  { name: "Microlins", img: microlins, desc: "Letreiro 3D em ACM branco sobreposto a fundo em ACM azul." },
+  { name: "Padaria Camila", img: padariaCamila, desc: "Fachada em ACM com letras caixa 3D de alta durabilidade." },
+  { name: "Mellos", img: mellos, desc: "Letreiro circular 3D com sistema de iluminação interna (Backlight)." },
+  { name: "MultiCargo", img: multicargo, desc: "Letras em PVC expandido aplicadas diretamente na parede da recepção." },
+  { name: "PontoMix", img: pontomix, desc: "Fachada em ACM com letras 3D e iluminação interna embutida." },
+  { name: "Pe&Vida", img: peevida, desc: "Letreiro 3D com iluminação indireta (Halo Light) por trás das letras." },
+  { name: "SaladaeEtc", img: saladaeetc, desc: "Letreiro 3D com iluminação interna retroiluminada." }
+];
 
-  useEffect(() => {
-    const handleEsc = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setSelectedProject(null);
-    };
-    window.addEventListener("keydown", handleEsc);
-    return () => window.removeEventListener("keydown", handleEsc);
-  }, []);
+  const scrollImages = [...projects, ...projects];
 
-  const filters = [
-    { id: "todos", label: lang === "pt" ? "Todos" : "All" },
-    { id: "fachada", label: lang === "pt" ? "Fachadas" : "Facades" },
-    { id: "letreiro", label: lang === "pt" ? "Letreiros" : "Signs" },
-    { id: "caixa", label: lang === "pt" ? "Letras Caixa" : "Channel Letters" },
-    { id: "acm", label: lang === "pt" ? "ACM & Fachadas" : "ACM & Facades" },
-    { id: "banners", label: lang === "pt" ? "Banners & Lonas" : "Banners & Tarps" },
-  ];
-
-  const projects: Project[] = [
-    {
-      id: 1,
-      title: lang === "pt" ? "Amarelinho de Manguariba" : "Amarelinho de Manguariba",
-      category: "fachada",
-      description: lang === "pt" ? "Fachada completa com letreiro e lona impressa" : "Complete facade with sign and printed tarp",
-      image: amarelinho1,
-    },
-    {
-      id: 2,
-      title: lang === "pt" ? "Amarelinho - Fachada Lateral" : "Amarelinho - Side Facade",
-      category: "banners",
-      description: lang === "pt" ? "Lona e banner de alta definição para fachada" : "HD tarp and banner for facade",
-      image: amarelinho2,
-    },
-    {
-      id: 3,
-      title: "Dila Modas",
-      category: "fachada",
-      description: lang === "pt" ? "Fachada elegante com pintura artística e letreiro" : "Elegant facade with artistic painting and sign",
-      image: dilaModas,
-    },
-    {
-      id: 4,
-      title: lang === "pt" ? "Espaço Aconchego Festivo" : "Espaço Aconchego Festivo",
-      category: "letreiro",
-      description: lang === "pt" ? "Letreiro luminoso para espaço de eventos" : "Illuminated sign for event venue",
-      image: espacoAconchego,
-    },
-    {
-      id: 5,
-      title: lang === "pt" ? "Guga's Casa do Confeiteiro" : "Guga's Confectionery Store",
-      category: "fachada",
-      description: lang === "pt" ? "Fachada completa com letreiro e toldo" : "Complete facade with sign and awning",
-      image: gugas,
-    },
-    {
-      id: 6,
-      title: "Maria Tocaia",
-      category: "letreiro",
-      description: lang === "pt" ? "Letreiro em letra caixa com iluminação LED" : "Channel letter sign with LED lighting",
-      image: mariaTocaia,
-    },
-    {
-      id: 7,
-      title: "Microlins",
-      category: "caixa",
-      description: lang === "pt" ? "Letras caixa em ACM com iluminação frontal" : "ACM channel letters with front lighting",
-      image: microlins,
-    },
-    {
-      id: 8,
-      title: "Padaria Camila",
-      category: "fachada",
-      description: lang === "pt" ? "Fachada completa com letreiro luminoso premium" : "Complete facade with premium illuminated sign",
-      image: padariaCamila,
-    },
-  ];
-
-  const filteredProjects =
-    activeFilter === "todos"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+  const scroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const { scrollLeft, clientWidth } = scrollRef.current;
+      const moveDistance = clientWidth * 0.5; 
+      const scrollTo = direction === "left" ? scrollLeft - moveDistance : scrollLeft + moveDistance;
+      scrollRef.current.scrollTo({ left: scrollTo, behavior: "smooth" });
+    }
+  };
 
   return (
-    <>
-      <section
-        id="portfolio"
-        ref={sectionRef}
-        className="py-24 lg:py-32 relative overflow-hidden bg-gradient-to-b from-background via-secondary/20 to-background"
+    <div className="w-full py-6 flex items-center justify-center gap-2 md:gap-4 px-2">
+
+      {/* Botão Voltar */}
+      <button
+        onClick={() => scroll("left")}
+        className="hidden md:flex flex-shrink-0 w-11 h-11 items-center justify-center bg-card hover:bg-primary hover:text-white text-primary border border-primary/20 rounded-full transition-all shadow-md active:scale-90"
       >
-        <div className="container mx-auto px-4 lg:px-8 relative z-10">
-          <div
-            className={`text-center max-w-3xl mx-auto mb-12 transition-all duration-1000 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            <span className="text-primary font-medium text-sm tracking-wider uppercase mb-4 block">
-              {t("portfolio.tag")}
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-              {t("portfolio.title")}{" "}
-              <span className="text-gradient">{t("portfolio.titleHighlight")}</span>
-            </h2>
-            <p className="text-muted-foreground text-lg">{t("portfolio.desc")}</p>
-          </div>
+        <ChevronLeft size={24} />
+      </button>
 
-          <div
-            className={`flex flex-wrap justify-center gap-3 mb-12 transition-all duration-1000 delay-200 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            {filters.map((filter) => (
-              <button
-                key={filter.id}
-                onClick={() => setActiveFilter(filter.id)}
-                className={`px-5 py-2.5 rounded-full font-medium text-sm transition-all duration-300 ${
-                  activeFilter === filter.id
-                    ? "bg-primary text-primary-foreground shadow-[0_0_20px_hsl(var(--primary)/0.4)]"
-                    : "bg-secondary text-secondary-foreground hover:bg-secondary/80"
-                }`}
-              >
-                {filter.label}
-              </button>
-            ))}
-          </div>
+      {/* Container Principal */}
+      <div className="relative flex-1 overflow-hidden">
+        
+        <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
+        <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredProjects.map((project, index) => (
+        <div
+          ref={scrollRef}
+          className="overflow-x-auto scrollbar-hide scroll-smooth cursor-grab active:cursor-grabbing"
+        >
+          {/* TAMANHO md:w-96 md:h-64 (384px x 256px) */}
+          <div className="flex animate-scroll-infinite w-max gap-5 py-4 px-4 hover:[animation-play-state:paused]">
+            {scrollImages.map((project, index) => (
               <div
-                key={project.id}
+                key={index}
                 onClick={() => setSelectedProject(project)}
-                className={`group relative aspect-[4/3] rounded-2xl overflow-hidden cursor-pointer transition-all duration-500 ${
-                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-                }`}
-                style={{ transitionDelay: `${index * 100 + 300}ms` }}
+                className="w-56 h-36 md:w-96 md:h-64 flex-shrink-0 rounded-2xl overflow-hidden border border-primary/10 shadow-lg cursor-pointer transition-all duration-300 hover:scale-[1.03] bg-card"
               >
                 <img
-                  src={project.image}
-                  alt={project.title}
-                  className="absolute inset-0 w-full h-full object-cover"
+                  src={project.img}
+                  className="w-full h-full object-cover opacity-90 hover:opacity-100 transition-opacity"
+                  alt={project.name}
+                  draggable="false"
                 />
-
-                <div className="absolute inset-0 flex flex-col justify-end p-6 bg-gradient-to-t from-black/80 via-black/30 to-transparent">
-                  <span className="text-primary text-xs font-medium uppercase tracking-wider mb-2">
-                    {filters.find((f) => f.id === project.category)?.label}
-                  </span>
-                  <h3 className="font-display text-xl font-bold text-white mb-1 group-hover:text-primary transition-all duration-300">
-                    {project.title}
-                  </h3>
-                  <p className="text-white/70 text-sm">{project.description}</p>
-
-                  <div className="absolute inset-0 bg-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                    <div className="w-14 h-14 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center border border-primary/30 scale-0 group-hover:scale-100 transition-transform duration-300">
-                      <ZoomIn className="w-6 h-6 text-primary" />
-                    </div>
-                  </div>
-                </div>
-
-                <div className="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-primary/50 transition-colors duration-300" />
               </div>
             ))}
           </div>
         </div>
-      </section>
+      </div>
 
+      {/* Botão Avançar */}
+      <button
+        onClick={() => scroll("right")}
+        className="hidden md:flex flex-shrink-0 w-11 h-11 items-center justify-center bg-card hover:bg-primary hover:text-white text-primary border border-primary/20 rounded-full transition-all shadow-md active:scale-90"
+      >
+        <ChevronRight size={24} />
+      </button>
+
+      {/* MODAL */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-background/90 backdrop-blur-md animate-in fade-in duration-300"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm cursor-zoom-out"
           onClick={() => setSelectedProject(null)}
         >
-          <button
-            onClick={() => setSelectedProject(null)}
-            className="absolute top-6 right-6 w-12 h-12 rounded-full bg-secondary border border-border flex items-center justify-center text-foreground hover:text-primary hover:border-primary transition-all duration-300 group"
-            aria-label="Fechar"
-          >
-            <X className="w-6 h-6 group-hover:rotate-90 transition-transform duration-300" />
-          </button>
-
           <div
-            className="relative max-w-2xl max-h-[70vh] w-full rounded-2xl overflow-hidden border border-border shadow-2xl animate-in zoom-in-95 duration-300"
+            className="bg-card border border-primary/30 p-6 rounded-3xl max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-200 cursor-default"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={selectedProject.image}
-              alt={selectedProject.title}
-              className="w-full h-auto max-h-[70vh] object-contain bg-card"
-            />
+            <div className="w-full h-48 rounded-xl overflow-hidden mb-5 border border-border">
+              <img src={selectedProject.img} className="w-full h-full object-cover" alt={selectedProject.name} />
+            </div>
+            <h3 className="text-xl font-bold text-foreground mb-2">{selectedProject.name}</h3>
+            <p className="text-muted-foreground text-sm mb-6 leading-relaxed border-l-2 border-primary/50 pl-3">
+              {selectedProject.desc}
+            </p>
+            <button
+              onClick={() => setSelectedProject(null)}
+              className="w-full py-3 bg-primary text-primary-foreground rounded-xl font-bold hover:shadow-[0_0_20px_hsl(var(--primary)/0.4)] transition-all active:scale-95"
+            >
+              Fechar
+            </button>
           </div>
         </div>
       )}
-    </>
+
+      <style dangerouslySetInnerHTML={{
+        __html: `
+        @keyframes scroll-infinite {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-scroll-infinite {
+          animation: scroll-infinite 50s linear infinite;
+        }
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+      `}} />
+    </div>
   );
 };
 

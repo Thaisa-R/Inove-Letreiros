@@ -13,7 +13,7 @@ const WhatsAppButton = () => {
   }, []);
 
   const message = encodeURIComponent("Olá, vim pelo site, gostaria de um orçamento!");
-  const phone = "5524998181034";
+  const phone = "5521981158456";
 
   return (
     <a

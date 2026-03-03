@@ -25,7 +25,7 @@ const Header = () => {
     { label: t("nav.home"), href: "#hero", path: "/inicio" },
     { label: t("nav.about"), href: "#about", path: "/sobre" },
     { label: t("nav.services"), href: "#services", path: "/servicos" },
-    { label: t("nav.portfolio"), href: "#portfolio", path: "/portfolio" },
+    { label: t("nav.partners"), href: "#partners", path: "/parceiros" },
     { label: t("nav.contact"), href: "#contact", path: "/contato" },
   ];
 
@@ -83,6 +83,7 @@ const Header = () => {
             ))}
           </ul>
 
+          {/* Botões Desktop */}
           <div className="hidden lg:flex items-center gap-2">
             <button
               onClick={toggleTheme}
@@ -99,12 +100,33 @@ const Header = () => {
             </button>
           </div>
 
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+          {/* Container Mobile unificado */}
+          <div className="flex lg:hidden items-center gap-2">
+            {/* Botão Tema Mobile */}
+            <button
+              onClick={toggleTheme}
+              className="w-10 h-10 flex items-center justify-center text-foreground hover:text-primary transition-colors"
+            >
+              {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+            </button>
+
+            {/* Botão Idioma Mobile */}
+            <button
+              onClick={() => setLang(lang === "pt" ? "en" : "pt")}
+              className="h-10 px-2 flex items-center gap-1 text-foreground hover:text-primary transition-colors text-sm font-bold"
+            >
+              <Globe size={16} />
+              {lang === "pt" ? "EN" : "PT"}
+            </button>
+
+            {/* Botão Menu */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2 text-foreground hover:text-primary transition-colors"
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
         </nav>
 
         {/* Mobile Menu */}

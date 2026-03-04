@@ -3,17 +3,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import amarelinho1 from "@/assets/portfolio/amarelinho1.png";
 import dilaModas from "@/assets/portfolio/dila-modas.png";
-import petrobras from "@/assets/portfolio/recap70AnosPetrob.png";
+import petrobras from "@/assets/portfolio/recap70anospetrob.png";
 import espacoAconchego from "@/assets/portfolio/espaco-aconchego.png";
 import gugas from "@/assets/portfolio/gugas.png";
 import mariaTocaia from "@/assets/portfolio/maria-tocaia.png";
 import microlins from "@/assets/portfolio/microlins.png";
 import padariaCamila from "@/assets/portfolio/padaria-camila.png";
 import mellos from "@/assets/portfolio/mellos.png";
-import multicargo from "@/assets/portfolio/multiCargo.jpeg";
-import pontomix from "@/assets/portfolio/pontoMix.png";
-import peevida from "@/assets/portfolio/pe&Vida.jpeg";
-import saladaeetc from "@/assets/portfolio/saladaeEtc.png";
+import multicargo from "@/assets/portfolio/multicargo.jpeg";
+import pontomix from "@/assets/portfolio/pontomix.png";
+import peevida from "@/assets/portfolio/pe&vida.jpeg";
+import saladaeetc from "@/assets/portfolio/saladaeetc.png";
 
 const Portfolio = () => {
   const [selectedProject, setSelectedProject] = useState<null | { name: string; img: string; desc: string }>(null);

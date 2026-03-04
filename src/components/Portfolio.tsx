@@ -12,7 +12,7 @@ import padariaCamila from "@/assets/portfolio/padaria-camila.png";
 import mellos from "@/assets/portfolio/mellos.png";
 import multicargo from "@/assets/portfolio/multicargo.jpeg";
 import pontomix from "@/assets/portfolio/pontomix.png";
-import peevida from "@/assets/portfolio/pe&vida.jpeg";
+import peevida from "@/assets/portfolio/peevida.jpeg";
 import saladaeetc from "@/assets/portfolio/saladaeetc.png";
 
 const Portfolio = () => {

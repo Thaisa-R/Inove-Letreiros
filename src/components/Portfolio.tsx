@@ -98,7 +98,7 @@ const projects = [
       {/* MODAL */}
       {selectedProject && (
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm cursor-zoom-out"
+          className="fixed inset-0 z-[100] flex items-center justify-center pt-10 bg-black/70 backdrop-blur-sm cursor-zoom-out"
           onClick={() => setSelectedProject(null)}
         >
           <div

@@ -16,6 +16,7 @@ const translations: Record<string, Record<Language, string>> = {
   "nav.portfolio": { pt: "Portfólio", en: "Portfolio" },
   "nav.partners": { pt: "Parceiros", en: "Partners" },
   "nav.contact": { pt: "Contato", en: "Contact" },
+  "nav.faq": { pt: "Dúvidas", en: "FAQ" },
 
   // Hero
   "hero.badge": { pt: "Desde 2016 iluminando ideias", en: "Illuminating ideas since 2016" },
@@ -61,10 +62,24 @@ const translations: Record<string, Record<Language, string>> = {
 
   // Portfolio
   "portfolio.tag": { pt: "Portfólio", en: "Portfolio" },
-  "portfolio.title": { pt: "Nossos", en: "Our" },
-  "portfolio.titleHighlight": { pt: "trabalhos", en: "work" },
+  "portfolio.title": { pt: "Projetos", en: "Projects" },
+  "portfolio.titleHighlight": { pt: "Realizados", en: "Completed" },
   "portfolio.desc": { pt: "Cada projeto é único. Veja como transformamos ideias em realidade.", en: "Every project is unique. See how we turn ideas into reality." },
   "portfolio.all": { pt: "Todos", en: "All" },
+  "portfolio.amarelinho.desc": { pt: "Letreiro 3D com letras caixa em PVC expandido e laterais adesivadas.", en: "3D signage with expanded PVC channel letters and adhesive sides." },
+  "portfolio.dila.desc": { pt: "Fachada em ACM dourado com letras caixa alta também em ACM.", en: "Golden ACM facade with matching ACM channel letters." },
+  "portfolio.petrobras.desc": { pt: "Letreiro 3D 360°, visível de todos os ângulos e fixado ao solo.", en: "360° 3D signage, visible from all angles and ground-mounted." },
+  "portfolio.aconchego.desc": { pt: "Fachada em ACM preto com letras em ACM branco de alto contraste.", en: "Black ACM facade with high-contrast white ACM lettering." },
+  "portfolio.gugas.desc": { pt: "Fachada com base em ACM e letras 3D em caixa alta.", en: "ACM base facade with 3D channel letters." },
+  "portfolio.maria.desc": { pt: "Fachada em ACM com letra caixa 3D e iluminação frontal por refletores.", en: "ACM facade with 3D channel letters and front spotlighting." },
+  "portfolio.microlins.desc": { pt: "Letreiro 3D em ACM branco sobreposto a fundo em ACM azul.", en: "White ACM 3D signage overlaid on a blue ACM background." },
+  "portfolio.camila.desc": { pt: "Fachada em ACM com letras caixa 3D de alta durabilidade.", en: "High-durability ACM facade with 3D channel letters." },
+  "portfolio.mellos.desc": { pt: "Letreiro circular 3D com sistema de iluminação interna (Backlight).", en: "Circular 3D sign with internal lighting system (Backlight)." },
+  "portfolio.multicargo.desc": { pt: "Letras em PVC expandido aplicadas diretamente na parede da recepção.", en: "Expanded PVC letters applied directly to the reception wall." },
+  "portfolio.pontomix.desc": { pt: "Fachada em ACM com letras 3D e iluminação interna embutida.", en: "ACM facade with 3D letters and built-in internal lighting." },
+  "portfolio.peevida.desc": { pt: "Letreiro 3D com iluminação indireta (Halo Light) por trás das letras.", en: "3D signage with indirect lighting (Halo Light) behind the letters." },
+  "portfolio.salada.desc": { pt: "Letreiro 3D com iluminação interna retroiluminada.", en: "3D signage with backlit internal lighting." },
+  "portfolio.modal.close": { pt: "Fechar", en: "Close" },
 
   // Partners
   "partners.tag": { pt: "Parceiros", en: "Partners" },
@@ -87,7 +102,7 @@ const translations: Record<string, Record<Language, string>> = {
   "contact.tag": { pt: "Contato", en: "Contact" },
   "contact.title": { pt: "Vamos criar algo", en: "Let's create something" },
   "contact.titleHighlight": { pt: "incrível", en: "amazing" },
-  "contact.titleEnd": { pt: "juntos", en: "together" },
+  "contact.titleEnd": { pt: "juntos?", en: "together" },
   "contact.desc": {
     pt: "Entre em contato para um orçamento gratuito. Estamos prontos para transformar sua visão em realidade luminosa.",
     en: "Get in touch for a free quote. We're ready to turn your vision into luminous reality.",

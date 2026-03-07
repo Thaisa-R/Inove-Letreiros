@@ -27,6 +27,7 @@ const Header = () => {
     { label: t("nav.services"), href: "#services", path: "/servicos" },
     { label: t("nav.partners"), href: "#partners", path: "/parceiros" },
     { label: t("nav.contact"), href: "#contact", path: "/contato" },
+    { label: t("nav.faq"), href: "#faq", path: "/duvidas" },
   ];
 
   const scrollToSection = (href: string, path: string) => {
@@ -100,7 +101,7 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Container Mobile unificado */}
+          {/* Container Mobile */}
           <div className="flex lg:hidden items-center gap-2">
             {/* Botão Tema Mobile */}
             <button

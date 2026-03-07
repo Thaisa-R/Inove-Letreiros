@@ -52,21 +52,33 @@ const Partners = () => {
   return (
     <section id="partners" ref={sectionRef} className="py-16 lg:py-24 relative overflow-hidden bg-secondary/30">
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className={`text-center max-w-3xl mx-auto mb-12 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="text-primary font-medium text-sm tracking-wider uppercase mb-4 block">{t("partners.tag")}</span>
-          <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold">
-            {t("partners.title")}{" "}
-            <span className="text-gradient">{t("partners.titleHighlight")}</span>{" "}
-            {t("partners.titleEnd")}
+        {/* Cabeçalho */}
+        <div className={`flex flex-col items-center mb-12 text-center px-4 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-[1px] bg-primary/30" />
+            <span className="text-primary text-xs font-bold uppercase tracking-[0.3em]">
+              {t("partners.tag")}
+            </span>
+            <div className="w-10 h-[1px] bg-primary/30" />
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight">
+            <span className="text-foreground">{t("partners.title")} </span>
+            <span className="text-gradient glow-text">
+              {t("partners.titleHighlight")}
+            </span>
+            {t("partners.titleEnd") && (
+              <span className="text-foreground"> {t("partners.titleEnd")}</span>
+            )}
           </h2>
         </div>
 
         <div className={`relative transition-all duration-1000 delay-300 ${isVisible ? "opacity-100" : "opacity-0"}`}>
           <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
           <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-          
+
           <div className="overflow-hidden">
-            {/* Aplicação da animação customizada sem saltos */}
+            {/* Animação */}
             <div className="flex animate-scroll-partners gap-6 lg:gap-8 w-max">
               {duplicatedPartners.map((partner, index) => (
                 <div key={index} className="flex-shrink-0 w-40 h-28 lg:w-52 lg:h-32 rounded-2xl bg-card border border-border flex items-center justify-center hover:border-primary/50 transition-all duration-300 group p-4">
@@ -82,7 +94,8 @@ const Partners = () => {
         </div>
       </div>
 
-      <style dangerouslySetInnerHTML={{ __html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes scroll-partners {
           0% { transform: translateX(0); }
           100% { transform: translateX(-50%); }

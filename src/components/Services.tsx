@@ -114,13 +114,18 @@ const Services = () => {
       <div className="absolute bottom-0 left-0 w-80 h-80 bg-accent/10 rounded-full blur-3xl" />
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="text-primary font-medium text-sm tracking-wider uppercase mb-4 block">{t("services.tag")}</span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            {t("services.title")}{" "}
-            <span className="text-gradient">{t("services.titleHighlight")}</span>
+        {/* Cabeçalho */}
+        <div className={`flex flex-col items-center mb-16 text-center px-4 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-[1px] bg-primary/30" />
+            <span className="text-primary text-xs font-bold uppercase tracking-[0.3em]">{t("services.tag")}</span>
+            <div className="w-10 h-[1px] bg-primary/30" />
+          </div>
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
+            <span className="text-foreground">{t("services.title")} </span>
+            <span className="text-gradient glow-text">{t("services.titleHighlight")}</span>
           </h2>
-          <p className="text-muted-foreground text-lg">{t("services.desc")}</p>
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">{t("services.desc")}</p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">

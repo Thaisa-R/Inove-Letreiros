@@ -23,7 +23,7 @@ const Contact = () => {
   const [imageName, setImageName] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
-  
+
   const fileInputRef = useRef<HTMLInputElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const { t, lang } = useLanguage();
@@ -54,38 +54,38 @@ const Contact = () => {
   ];
 
   const contactItems = [
-    { 
-      icon: Phone, 
-      label: copied ? (lang === "pt" ? "Copiado!" : "Copied!") : t("contact.phone"), 
-      value: "21 98115-8456", 
+    {
+      icon: Phone,
+      label: copied ? (lang === "pt" ? "Copiado!" : "Copied!") : t("contact.phone"),
+      value: "21 98115-8456",
       isPhone: true,
       action: () => {
         navigator.clipboard.writeText("21981158456");
         setCopied(true);
         setTimeout(() => setCopied(false), 2000);
-        
+
         toast({
           title: lang === "pt" ? "Copiado!" : "Copied!",
           description: lang === "pt" ? "Número salvo na área de transferência." : "Number saved to clipboard.",
         });
-      } 
+      }
     },
-    { 
-      icon: Mail, 
-      label: t("contact.email"), 
-      value: "inov.cvisual@gmail.com", 
+    {
+      icon: Mail,
+      label: t("contact.email"),
+      value: "inov.cvisual@gmail.com",
       action: () => {
         const subject = encodeURIComponent("Orçamento - Inov Letreiros");
         window.location.href = `mailto:inov.cvisual@gmail.com?subject=${subject}`;
-      } 
+      }
     },
-    { 
-      icon: MapPin, 
-      label: t("contact.address"), 
-      value: "Rio de Janeiro, RJ", 
+    {
+      icon: MapPin,
+      label: t("contact.address"),
+      value: "Rio de Janeiro, RJ",
       action: () => {
         window.open("https://maps.google.com/?q=Rio+de+Janeiro,+RJ", "_blank");
-      } 
+      }
     },
   ];
 
@@ -101,7 +101,7 @@ const Contact = () => {
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setError(null);
     const file = e.target.files?.[0];
-    
+
     if (!file) return;
 
     if (file.size > 5 * 1024 * 1024) {
@@ -145,12 +145,12 @@ const Contact = () => {
         });
         const data = await response.json();
         if (data.success) {
-            uploadedImageUrl = data.data.url;
+          uploadedImageUrl = data.data.url;
         } else {
-            throw new Error("Upload failed");
+          throw new Error("Upload failed");
         }
       }
-      
+
       const whatsappNumber = "5521981158456";
       const serviceName = serviceOptions.find(s => s.value === formData.service)?.label || formData.service;
       const photoText = uploadedImageUrl ? `\n\n📷 *Foto:* ${uploadedImageUrl}` : "";
@@ -172,14 +172,29 @@ const Contact = () => {
       </div>
 
       <div className="container mx-auto px-4 lg:px-8 relative z-10">
-        <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="text-primary font-medium text-sm tracking-wider uppercase mb-4 block">{t("contact.tag")}</span>
-          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            {t("contact.title")}{" "}
-            <span className="text-gradient">{t("contact.titleHighlight")}</span>{" "}
-            {t("contact.titleEnd")}
+        {/* Cabeçalho */}
+        <div className={`flex flex-col items-center mb-16 text-center px-4 transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-[1px] bg-primary/30" />
+            <span className="text-primary text-xs font-bold uppercase tracking-[0.3em]">
+              {t("contact.tag")}
+            </span>
+            <div className="w-10 h-[1px] bg-primary/30" />
+          </div>
+
+          <h2 className="text-3xl md:text-5xl font-bold leading-tight mb-6">
+            <span className="text-foreground">{t("contact.title")} </span>
+            <span className="text-gradient glow-text">
+              {t("contact.titleHighlight")}
+            </span>
+            {t("contact.titleEnd") && (
+              <span className="text-foreground"> {t("contact.titleEnd")}</span>
+            )}
           </h2>
-          <p className="text-muted-foreground text-lg">{t("contact.desc")}</p>
+
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
+            {t("contact.desc")}
+          </p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-12 lg:gap-16">
@@ -208,7 +223,7 @@ const Contact = () => {
           <div className={`lg:col-span-3 transition-all duration-1000 delay-400 ${isVisible ? "opacity-100 translate-x-0" : "opacity-0 translate-x-12"}`}>
             <form onSubmit={handleWhatsAppSubmit} className="p-6 lg:p-8 rounded-3xl bg-card border border-border">
               <h3 className="font-display text-2xl font-bold mb-6 text-foreground">{t("contact.formTitle")}</h3>
-              
+
               {error && (
                 <div className="mb-6 p-4 rounded-xl bg-destructive/10 border border-destructive/20 flex items-center gap-3 text-destructive text-sm animate-in fade-in slide-in-from-top-1">
                   <AlertCircle className="w-4 h-4" />

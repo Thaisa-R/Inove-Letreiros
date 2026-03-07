@@ -38,6 +38,7 @@ const Footer = () => {
             <a href="#services" className="hover:text-primary transition-colors">{t("nav.services")}</a>
             <a href="#portfolio" className="hover:text-primary transition-colors">{t("nav.portfolio")}</a>
             <a href="#contact" className="hover:text-primary transition-colors">{t("nav.contact")}</a>
+            <a href="#faq" className="hover:text-primary transition-colors">{t("nav.faq")}</a>
           </div>
 
           <div className="flex gap-3">
